@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  app:    
+    container_name: robowealth    
+    build: .       
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
