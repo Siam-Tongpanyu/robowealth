@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Transaction = require("mongoose-transactions");
 const Author = require("../models/author");
 const validator = require("../utils/validator");
+const { port, mongo } = require("../config/vars.js");
 
 const useDB = true;
 const transaction = new Transaction(useDB);
@@ -124,4 +125,19 @@ exports.removeAuthor = (req, res, next)=>{
       }
       next(err);
     });
+};
+
+exports.testAuthor = (req, res, next)=>{
+  mongoose.connect(mongo.uri, mongo.option)
+  .then(result=>{
+    res.status(200).json({
+      message: "test connect db successfuly." +  mongo.uri  
+    });
+  })
+  .catch(err=>{
+    res.status(200).json({
+      message: "test authors successfuly.",
+      errdata: err   
+    });
+  })  
 };

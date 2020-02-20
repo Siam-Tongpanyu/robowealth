@@ -49,7 +49,7 @@ mongoose
     console.log("database start on " + mongo.uri);
   })
   .catch(err => {
-    //  console.log(err);
+      console.log(err);
   });
 app.listen(port, () => {
   console.log("server start on port " + port);
